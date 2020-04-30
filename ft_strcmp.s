@@ -2,27 +2,35 @@ section	.text
 	global	ft_strcmp
 
 ft_strcmp:
-		push	rbp
+
+	.BEGIN:
+		CMP		rsi,0x00
+		JE		.END_E
+		CMP		rdi,0x00
+		JE		.END_E
+
 	.L1:
-		mov		rbp,[rsi]
-		CMP		[rdi], rbp
-		JG		.GREATER
-		JL		.LESS
+		mov		rcx,[rsi]
+		CMP		[rdi], rcx
+		JL		.END_L
+		JG		.END_G
 		JE		.EQUAL
+
 	.EQUAL:
-		push	0
-		CMP		rbp,0x00
-		JE		.END
+		CMP		rcx,0x00
+		JE		.END_E
+		inc		rdi
+		inc		rsi
 		JMP		.L1
-	.LESS:
-		push	-1
-		JMP		.END
-	.GREATER:
-		push	1
-		JMP		.END
-	.END:
-		pop		rbp
+
+	.END_G:
+		mov		rax,0x01
 		ret
 
+	.END_L:
+		mov		rax,0xFFFFFFFF
+		ret
 
-
+	.END_E:
+		mov		rax,0x00
+		ret

@@ -12,6 +12,5 @@ ft_strcpy:
 		inc		rsi
 		JMP		.L1
 	.END:
-		mov		rdi,rbp
 		pop		rbp
 		ret
