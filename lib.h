@@ -4,6 +4,8 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
+# include <errno.h>
+# include <fcntl.h>
 
 size_t 	ft_strlen(const char *s);
 ssize_t ft_write(int fd, const void *buf, size_t count);

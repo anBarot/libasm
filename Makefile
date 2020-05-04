@@ -6,7 +6,7 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/24 12:07:56 by abarot            #+#    #+#              #
-#    Updated: 2020/04/30 16:44:07 by abarot           ###   ########.fr        #
+#    Updated: 2020/05/04 11:33:20 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ $(NAME) :
 			nasm -f elf64 ft_strdup.s
 			ar -rc $@ $(OBJS) 
 			ranlib $@
+			gcc -no-pie main.c libasm.a
 
 clean	:
 			$(RM) $(OBJS)

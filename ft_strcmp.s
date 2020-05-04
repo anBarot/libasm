@@ -2,7 +2,6 @@ section	.text
 	global	ft_strcmp
 
 ft_strcmp:
-
 	.BEGIN:
 		CMP		rsi,0x00
 		JE		.END_E
@@ -23,11 +22,11 @@ ft_strcmp:
 		inc		rsi
 		JMP		.L1
 
-	.END_G:
+	.END_L:
 		mov		rax,0x01
 		ret
 
-	.END_L:
+	.END_G:
 		mov		rax,0xFFFFFFFF
 		ret
 
