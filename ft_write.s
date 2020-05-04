@@ -1,13 +1,16 @@
 section     .text
 global      ft_write    
-extern		error                  
+extern		error
+extern		ft_read
 
 ft_write:
 	mov		rax,0x01
 	syscall
-	JGE		.END
-	call	error
+	mov		rbx,rax
+	CMP		rbx,0x00
+	JL		.ERROR
 	ret
 
-	.END:
+	.ERROR:
+	call	ft_read
 	ret

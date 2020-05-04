@@ -15,7 +15,7 @@ void	test_5()
 	int		fd;
 
 	buf = malloc(10);
-	fd = open("Makefile", O_RDWR);
+	fd = open("test.txt", O_RDWR);
 	i = ft_read(fd,buf,10);
 	printf("i : %d", i);
 	if (i < 0)
@@ -24,7 +24,7 @@ void	test_5()
 		printf("\n%d : %s\n",i,buf);
 	close(fd);
 	free(buf);
-	fd = open("Makefiles", O_RDWR);
+	fd = open("tests.txt", O_RDWR);
 	buf = malloc(20);
 	i = ft_read(fd,buf,20);
 	printf("i : %d", i);
@@ -34,7 +34,7 @@ void	test_5()
 		printf("\n%d : %s\n",i,buf);
 	close(fd);
 	free(buf);
-	fd = open("Makefile", O_WRONLY);
+	fd = open("test.txt", O_WRONLY);
 	buf = malloc(20);
 	i = ft_read(fd,buf,20);
 	printf("i : %d", i);
@@ -45,7 +45,7 @@ void	test_5()
 	close(fd);
 	free(buf);
 	buf = malloc(10);
-	fd = open("Makefile", O_RDWR);
+	fd = open("test.txt", O_RDWR);
 	i = ft_read(fd,buf,40);
 	printf("i : %d", i);
 	if (i < 0)
