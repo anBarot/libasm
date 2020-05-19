@@ -21,23 +21,23 @@ void	test_5()
 	char	*buf;
 	int		fd;
 
-	buf = calloc(20,1);
-	fd = open("ft_read.s", O_RDWR);
-	i = ft_read(fd,buf,19);
-	printf("\nreturn value : %d", i);
+	buf = calloc(30,1);
+	fd = open("srcs/ft_read.s", O_RDWR);
+	i = ft_read(fd,buf,29);
+	printf("\nRead srcs/ft_read.s, 29\nreturn value : %d", i);
 	if (i < 0)
 		printf("\nerror %d: %s\n", errno, strerror(errno));
 	else
-		printf("\n%s\n",buf);
+		printf("\nBuffer string :\n%s\n",buf);
 	close(fd);
 	free(buf);
 	buf = calloc(20,1);
 	i = ft_read(-1,buf,19);
-	printf("\nreturn value : %d", i);
+	printf("\nRead fd = -1\nreturn value : %d", i);
 	if (i < 0)
 		printf("\nerror %d: %s\n", errno, strerror(errno));
 	else
-		printf("\n%d : %s\n",i,buf);
+		printf("\nBuffer string :\n%s\n",buf);
 	free(buf);
 }
 

@@ -6,7 +6,7 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/24 12:07:56 by abarot            #+#    #+#              #
-#    Updated: 2020/05/14 15:22:20 by abarot           ###   ########.fr        #
+#    Updated: 2020/05/19 12:59:28 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJS_BONUS	= $(SRCS_BONUS:.s=.o)
 
 INCLUDE	= include
 
-CFLAGS	= -Wall -Wextra -Werror -no-pie -fsanitize=address
+CFLAGS	= -Wall -Wextra -no-pie -fsanitize=address #-Werror
 
 RM		= rm -rf
 

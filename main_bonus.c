@@ -1,5 +1,73 @@
 #include "libasm_bonus.h"
 
+void	test_3()
+{
+	t_list **ls_beg;
+	t_list *ls;
+	t_list *ls_2;
+
+	ls_beg = (t_list **)malloc(sizeof(t_list *));
+	ls = (t_list *)malloc(sizeof(t_list));
+	ls_2 = (t_list *)malloc(sizeof(t_list));
+
+	*ls_beg = ls;
+	ls->data = (char *)ft_strdup("begin list!");
+	ls->next = ls_2;
+	ls_2->data = (char *)ft_strdup("end list");
+	ls_2->next = 0;
+
+	char *tmp = ft_strdup("hello!"); 
+
+	printf("\nlist size before : %d\n",ft_list_size(*ls_beg));
+	ft_list_push_front(ls_beg,tmp);
+
+	printf("\nlist size after : %d\n",ft_list_size(*ls_beg));
+	printf("\n(*ls_beg)->data : %s\n",(*ls_beg)->data);
+	printf("\n*(*ls_beg)->next : %s\n",*(*ls_beg)->next);
+	printf("\n(*ls_beg)->next->next : %d\n",(*ls_beg)->next->next);
+
+	free(ls->data);
+	free(ls_2->data);
+	free(tmp);
+	free(ls_2);
+	free(ls);
+	free(*ls_beg);
+	free(ls_beg);
+}
+
+void	test_2()
+{
+	t_list *ls;
+	t_list *ls_2;
+	t_list *ls_3;
+	t_list *ls_4;
+
+	ls = (t_list *)malloc(sizeof(t_list));
+	ls_2 = (t_list *)malloc(sizeof(t_list));
+	ls_3 = (t_list *)malloc(sizeof(t_list));
+	ls_4 = (t_list *)malloc(sizeof(t_list));
+
+	ls->data = (char *)ft_strdup("begin list!");
+	ls->next = ls_2;
+	ls_2->data = (char *)ft_strdup("intermediate");
+	ls_2->next = ls_3;
+	ls_3->data = (char *)ft_strdup("end list!");
+	ls_3->next = ls_4;
+	ls_4->data = (char *)ft_strdup("end list!");
+	ls_4->next = 0;
+
+	printf("\nft_list : %d\n",ft_list_size(ls));
+
+	free(ls->data);
+	free(ls_2->data);
+	free(ls_3->data);
+	free(ls_4->data);
+	free(ls);
+	free(ls_2);
+	free(ls_3);
+	free(ls_4);
+}
+
 void	test_1()
 {
 	printf("\nF base 16 : %d\n",ft_atoi_base("F","0123456789ABCDEF"));
@@ -20,15 +88,11 @@ void	test_1()
 
 int 	main()
 {
-	printf("\n\n-----------test ft_atoi_base-----------\n\n");
-	test_1();
-	// printf("\n\n------------test ft_list_push_front------------\n\n");
-	// test_2();
-	// printf("\n\n------------test ft_list_remove_if------------\n\n");
-	// test_3();
+	// printf("\n\n-----------test ft_atoi_base-----------\n\n");
+	// test_1();
 	// printf("\n\n------------test ft_list_size------------\n\n");
-	// test_4();
-	// printf("\n\n------------test ft_list_sort------------\n\n");
-	// test_5();
+	// test_2();
+	printf("\n\n------------test ft_list_push_front------------\n\n");
+	test_3();
 	return (0);
 }

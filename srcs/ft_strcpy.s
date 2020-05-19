@@ -2,16 +2,15 @@ section	.text
 	global	ft_strcpy
 
 ft_strcpy:
-		push	rbp
+		mov		rbx,rdi
 	.L1:
-		mov		rbp,[rsi]
-		CMP		rbp, 0x00
+		movzx	rcx,byte[rsi]
+		mov		[rdi],rcx
+		CMP		rcx,0x00
 		JE		.END
-		mov		[rdi],rbp
 		inc 	rdi
 		inc		rsi
 		JMP		.L1
 	.END:
-		mov		[rdi],rbp
-		pop		rbp
+		mov		rax,rbx
 		ret
