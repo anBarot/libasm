@@ -23,11 +23,11 @@ ft_strcmp:
 		JMP		.L1
 
 	.END_G:
-		mov		rax,0x01
+		mov		rax,0xFFFFFFFF
 		ret
 
 	.END_L:
-		mov		rax,0xFFFFFFFF
+		mov		rax,0x01
 		ret
 
 	.END_E:

@@ -1,4 +1,4 @@
-#include "libasm_bonus.h"
+#include "./../include/libasm_bonus.h"
 
 void	test_3()
 {
@@ -20,11 +20,6 @@ void	test_3()
 
 	printf("\nlist size before : %d\n",ft_list_size(*ls_beg));
 	ft_list_push_front(ls_beg,tmp);
-
-	printf("\nlist size after : %d\n",ft_list_size(*ls_beg));
-	printf("\n(*ls_beg)->data : %s\n",(*ls_beg)->data);
-	printf("\n*(*ls_beg)->next : %s\n",*(*ls_beg)->next);
-	printf("\n(*ls_beg)->next->next : %d\n",(*ls_beg)->next->next);
 
 	free(ls->data);
 	free(ls_2->data);
@@ -56,7 +51,17 @@ void	test_2()
 	ls_4->data = (char *)ft_strdup("end list!");
 	ls_4->next = 0;
 
-	printf("\nft_list : %d\n",ft_list_size(ls));
+	printf("\nResult list with 4 elements : %d\n",ft_list_size(ls));
+
+	ls_3->next = 0;
+
+	printf("\nResult after retreiving the last element (ls_3->next = 0) : %d\n",ft_list_size(ls));
+
+	ls = ls->next;
+
+	printf("\nResult after advancing the first element (ls = ls->next) : %d\n",ft_list_size(ls));
+
+	printf("\nNo arguments : %d\n",ft_list_size(0));
 
 	free(ls->data);
 	free(ls_2->data);
@@ -88,11 +93,11 @@ void	test_1()
 
 int 	main()
 {
-	// printf("\n\n-----------test ft_atoi_base-----------\n\n");
-	// test_1();
-	// printf("\n\n------------test ft_list_size------------\n\n");
-	// test_2();
-	printf("\n\n------------test ft_list_push_front------------\n\n");
-	test_3();
+	printf("\n\n-----------test ft_atoi_base-----------\n\n");
+	test_1();
+	printf("\n\n------------test ft_list_size------------\n\n");
+	test_2();
+	// printf("\n\n------------test ft_list_push_front------------\n\n");
+	// test_3();
 	return (0);
 }

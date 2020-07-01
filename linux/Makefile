@@ -6,51 +6,40 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/24 12:07:56 by abarot            #+#    #+#              #
-#    Updated: 2020/07/01 15:18:08 by abarot           ###   ########.fr        #
+#    Updated: 2020/07/01 15:52:36 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libasm.a
+NAME	= ../libasm.a
 
-OS := $(shell uname)
+NASM	= nasm -f elf64
 
-OBJS	= objs/ft_strlen.o objs/ft_write.o objs/ft_read.o objs/ft_strcpy.o \
-			objs/ft_strcmp.o objs/ft_strdup.o
+SRCS	= srcs/ft_strlen.s srcs/ft_write.s srcs/ft_read.s srcs/ft_strcpy.s \
+			srcs/ft_strcmp.s srcs/ft_strdup.s
 
-OBJS_BONUS	= objs/ft_atoi_base.o objs/ft_list_push_front.o objs/ft_list_size.o \
-				objs/ft_strchr.o
+OBJS	= $(SRCS:.s=.o)
+
+SRCS_BONUS	= bonus/ft_atoi_base.s bonus/ft_list_push_front.s bonus/ft_list_size.s \
+				bonus/ft_strchr.s
+
+OBJS_BONUS	= $(SRCS_BONUS:.s=.o)
+
+INCLUDE	= ../include
 
 RM		= rm -rf
+
+%.o	:	%.s
+		$(NASM) $<
 
 all	:	
 		make $(NAME)
 
-$(NAME) :	
-ifeq ($(OS),Linux)
-	make -C linux 
-else
-	make -C macos 
-endif
+$(NAME) :	$(OBJS)
+			ar -rc $@ $(OBJS) 
+			ranlib $@
+			mv $(OBJS) ../objs/.
 
-bonus	:
-ifeq ($(OS),Linux)
-	make -C linux bonus
-else
-	make -C macos bonus
-endif
-
-test	:	$(NAME)
-			./test_dir/run_test.sh && ./test && rm test
-
-test_bonus : 
-			make bonus
-			./test_dir/run_bonus.sh && ./test_bonus && rm test_bonus
-
-clean	:
-			$(RM) $(OBJS) $(OBJS_BONUS)
-
-fclean	:	clean
-			$(RM) $(NAME) test 
-
-re		:	fclean 
-			make all
+bonus	:	$(OBJS_BONUS) $(OBJS)
+			ar -rc $(NAME) $(OBJS) $(OBJS_BONUS)
+			ranlib $(NAME)
+			mv $(OBJS) $(OBJS_BONUS) ../objs/.
