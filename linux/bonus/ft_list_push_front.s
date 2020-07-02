@@ -4,6 +4,7 @@ extern		malloc
 
 ft_list_push_front:
 	mov		rcx,rdi
+	mov		rdx,rsi
 	cmp		rdi,0x00
 	JE		.ERROR
 	cmp		byte[rdi],0x00
@@ -15,7 +16,7 @@ ft_list_push_front:
 	call	malloc
 	mov		rbx,rax
 	mov		[rbx],rsi
-	add		rbx,8
+	add		rbx,0x08
 	mov		rbx,0x00
 	mov		rcx,rbx
 	ret
@@ -23,11 +24,12 @@ ft_list_push_front:
 	.FIRST_EL:
 	mov		rdi,0x20
 	call	malloc
-	mov		rbx,[rax]
-	mov		[rbx],rsi
-	add		rbx,8
-	mov		rbx,[rcx]
+	mov		rdi,rcx
 	mov		[rcx],rax
+	mov		rbx,rax
+	mov		[rbx],rsi
+	add		rbx,0x08
+	mov		rbx,[rdi]
 	ret
 
 	.ERROR:

@@ -1,4 +1,16 @@
-#include "./../include/libasm.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/02 13:21:20 by abarot            #+#    #+#             */
+/*   Updated: 2020/07/02 13:23:06 by abarot           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libasm.h"
 
 void	test_5()
 {
@@ -69,17 +81,19 @@ void	test_4()
 	printf("\n----------------- Third test : stdin/stdout ---------------\n\n");
 
 	buff = calloc(50,1);
-	printf("\nWrite hello on the standard input\n");
-	i = ft_write(0, "hello\n", 7);
-	if (i < 0)
-		printf("\nerror %d: %s\n", errno, strerror(errno));
 	
-	printf("\nRead on the standard output\n");
-	i = ft_read(1, buff, 10);
+	printf("\nRead on the standard input\n");
+	i = ft_read(0, buff, 100);
 	if (i < 0)
 		printf("\nerror %d: %s\n", errno, strerror(errno));
 	else
 		printf("Result of read : %s",buff);
+
+	printf("\nWrite buffer of ft_read on the standard output\n");
+	i = ft_write(1, buff, ft_strlen(buff));
+	if (i < 0)
+		printf("\nerror %d: %s\n", errno, strerror(errno));
+
 	free(buff);
 }
 

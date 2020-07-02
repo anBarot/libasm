@@ -1,0 +1,52 @@
+
+
+-----------test ft_atoi_base-----------
+
+
+F base 16 : 15
+
+FF base 16 : 255
+
+-FF base 16 : -255
+
+no string arg1: 0
+
+no string arg2: 0
+
+empty string arg1: 0
+
+empty string arg2: 0
+
+FFFF base 16 : 65535
+
+0 base 10 : 0
+
+10592 base 10 : 10592
+
+0 base 16 : 0
+
+101 base 2 : 5
+
+1101010101011 base 2 : 6827
+
+tip base pinte (310 base 5) : 80
+
+binouze base pinte : 0
+
+
+------------test ft_list_size && list push front------------
+
+
+Result list with 4 elements : 4
+
+Result after retreiving the last element (ls_3->next = 0) : 3
+
+Result after advancing the first element (ls = ls->next) : 2
+
+ft_list_size with no arguments (0) : 0
+
+Value of data of the first element in list before ft_list_push_front : intermediate
+
+Adding an element with ft_list_push_front, data = string 'hello !' :
+Size of list : 2
+Data : (null)

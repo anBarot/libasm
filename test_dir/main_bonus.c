@@ -1,42 +1,27 @@
-#include "./../include/libasm_bonus.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/02 13:21:32 by abarot            #+#    #+#             */
+/*   Updated: 2020/07/02 14:50:01 by abarot           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	test_3()
-{
-	t_list **ls_beg;
-	t_list *ls;
-	t_list *ls_2;
-
-	ls_beg = (t_list **)malloc(sizeof(t_list *));
-	ls = (t_list *)malloc(sizeof(t_list));
-	ls_2 = (t_list *)malloc(sizeof(t_list));
-
-	*ls_beg = ls;
-	ls->data = (char *)ft_strdup("begin list!");
-	ls->next = ls_2;
-	ls_2->data = (char *)ft_strdup("end list");
-	ls_2->next = 0;
-
-	char *tmp = ft_strdup("hello!"); 
-
-	printf("\nlist size before : %d\n",ft_list_size(*ls_beg));
-	ft_list_push_front(ls_beg,tmp);
-
-	free(ls->data);
-	free(ls_2->data);
-	free(tmp);
-	free(ls_2);
-	free(ls);
-	free(*ls_beg);
-	free(ls_beg);
-}
+#include "libasm_bonus.h"
 
 void	test_2()
 {
+	t_list **head;
 	t_list *ls;
 	t_list *ls_2;
 	t_list *ls_3;
 	t_list *ls_4;
 
+
+	head = (t_list **)malloc(sizeof((head)));
 	ls = (t_list *)malloc(sizeof(t_list));
 	ls_2 = (t_list *)malloc(sizeof(t_list));
 	ls_3 = (t_list *)malloc(sizeof(t_list));
@@ -61,16 +46,27 @@ void	test_2()
 
 	printf("\nResult after advancing the first element (ls = ls->next) : %d\n",ft_list_size(ls));
 
-	printf("\nNo arguments : %d\n",ft_list_size(0));
+	printf("\nft_list_size with no arguments (0) : %d\n",ft_list_size(0));
+
+	*head = ls;
+
+	printf("\nValue of data of the first element in list : %s\n", (char *)(*head)->data) ;
+
+	char *data = ft_strdup("hello !");
+	ft_list_push_front(head, data);
+
+	printf("\nAdding an element with ft_list_push_front, data = string 'hello !' :\nSize of list : %d\nData : %s\n", ft_list_size(*head), (char *)(*head)->data);
 
 	free(ls->data);
 	free(ls_2->data);
 	free(ls_3->data);
 	free(ls_4->data);
+	free(data);
 	free(ls);
 	free(ls_2);
 	free(ls_3);
 	free(ls_4);
+	free(head);
 }
 
 void	test_1()
@@ -84,6 +80,7 @@ void	test_1()
 	printf("\nempty string arg2: %d\n",ft_atoi_base("FF",""));
 	printf("\nFFFF base 16 : %d\n",ft_atoi_base("FFFF","0123456789ABCDEF"));
 	printf("\n0 base 10 : %d\n",ft_atoi_base("0","0123456789"));
+	printf("\n10592 base 10 : %d\n",ft_atoi_base("10592","0123456789"));
 	printf("\n0 base 16 : %d\n",ft_atoi_base("0","0123456789ABCDEF"));
 	printf("\n101 base 2 : %d\n",ft_atoi_base("101","01"));
 	printf("\n1101010101011 base 2 : %d\n",ft_atoi_base("1101010101011","01"));
@@ -95,9 +92,7 @@ int 	main()
 {
 	printf("\n\n-----------test ft_atoi_base-----------\n\n");
 	test_1();
-	printf("\n\n------------test ft_list_size------------\n\n");
+	printf("\n\n------------test ft_list_size && list push front------------\n\n");
 	test_2();
-	// printf("\n\n------------test ft_list_push_front------------\n\n");
-	// test_3();
 	return (0);
 }
